@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 
@@ -7,20 +8,44 @@ import { Chart } from 'chart.js';
   styleUrls: ['./chartB.component.scss']
 })
 export class ChartComponentB implements OnInit {
+  baseUrl = 'https://assets-assignment-532.onrender.com';
+  chartLabels: any[] = [];
 
   chart: any = []
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+
+    this.getChartData();
+
+  }
+
+  getChartData() {
+    this.http.get(`${this.baseUrl}/api/v1/extracted_data?size=250`).subscribe((res: any) => {
+      for (const key in res.data) {
+        if (Object.prototype.hasOwnProperty.call(res.data, key)) {
+          const element = res.data[key]
+          if(key !== 'config') {
+            this.chartLabels.push(element.month_year)
+          }
+        }
+      }
+      let uniqueChars = [...new Set(this.chartLabels)];
+      this.chartLabels = uniqueChars;
+      this.defineChart();
+    });
+  }
+
+  defineChart() {
 
     this.chart = new Chart('canvasB', {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: this.chartLabels,
         datasets: [
           {
-            label: '# of Votes',
+            label: 'CAP',
             data: [65, 59, 80, 81, 56, 55, 40],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',

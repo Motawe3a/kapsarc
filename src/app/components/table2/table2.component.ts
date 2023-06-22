@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -5,32 +6,33 @@ import { MatTableDataSource } from '@angular/material/table';
 export interface tableData {
   feed: string;
   config: string;
-  comp: string;
+  avg: string;
 }
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-table2',
+  templateUrl: './table2.component.html',
+  styleUrls: ['./table2.component.scss']
 })
-export class TableComponent implements OnInit, OnChanges {
-  @Input() data: any = [];
-  @Input() displayedColumns: string[] = ['feed', 'config', 'comp'];
+export class Table2Component implements OnInit {
+  baseUrl = 'https://assets-assignment-532.onrender.com';
+
+  @Input() displayedColumns: string[] = ['feed', 'config', 'avg'];
   public dataSource!: MatTableDataSource<tableData>;
   posts: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-  }
+    // handle pagination from frontend side
+    this.http.get(`${this.baseUrl}/api/v1/avg_composition?size=230`).subscribe((res: any) => {
 
-  ngOnChanges() {
-    this.dataSource = new MatTableDataSource(this.data);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
+      this.dataSource = new MatTableDataSource(res.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(event: Event) {

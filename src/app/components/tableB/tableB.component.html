@@ -1,0 +1,35 @@
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput type="text" (keyup)="applyFilter($event)" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortDisableClear matSortDirection="desc">
+
+  <!-- Country Column -->
+  <ng-container matColumnDef="Country">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
+    <td mat-cell *matCellDef="let row"> {{row.Country}} </td>
+  </ng-container>
+  <!-- month_year Column -->
+  <ng-container matColumnDef="month_year">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Month-Year </th>
+    <td mat-cell *matCellDef="let row"> {{row.month_year}} </td>
+  </ng-container>
+
+  <!-- value Column -->
+  <ng-container matColumnDef="value">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Value </th>
+    <td mat-cell *matCellDef="let row"> {{row.value}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <!-- empty data row -->
+  <tr *matNoDataRow>
+    <td class="mat-cell no_data" colspan="6">
+      the filter doesn't match any item from the table <strong>{{input.value}}</strong>
+    </td>
+  </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="select page"></mat-paginator>

@@ -16,10 +16,10 @@
     <td mat-cell *matCellDef="let row"> {{row.config}} </td>
   </ng-container>
 
-  <!-- comp Column -->
-  <ng-container matColumnDef="comp">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Composition </th>
-    <td mat-cell *matCellDef="let row"> {{row.comp}} </td>
+  <!-- avg Column -->
+  <ng-container matColumnDef="avg">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Average </th>
+    <td mat-cell *matCellDef="let row"> {{row.avg}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,9 +1,19 @@
 <div class="container_wrapper">
   <div class="sidenav">
-    <img src="../../../assets/logo.jpg" alt="">
+    <img class="logo" src="../../../assets/logo.jpg" alt="img">
     <div class="list_wrapper">
-      <span [ngClass]="{'active': exerciseA}" (click)="showExercisePage('A')">A/Exercise</span>
-      <span [ngClass]="{'active': exerciseB}" (click)="showExercisePage('B')">B/Exercise</span>
+      <span class="nav_link" [ngClass]="{'active': exerciseA}" (click)="showExercisePage('A')">
+        <img class="nav_icon" src="../../../assets/Vector.png" alt="icon">
+        <span class="nav_txt">
+          A/Exercise
+        </span>
+      </span>
+      <span class="nav_link" [ngClass]="{'active': exerciseB}" (click)="showExercisePage('B')">
+        <img class="nav_icon" src="../../../assets/Vector.png" alt="icon">
+        <span class="nav_txt">
+          B/Exercise
+        </span>
+      </span>
     </div>
   </div>
   <div class="mainContent">
@@ -23,12 +33,13 @@
         </div>
       </div>
 
+      <!-- <app-table [displayedColumns]="['id', 'asset', 'configuration', 'composition']"></app-table> -->
       <div class="data_wrapper_table">
         <div class="container">
           <span class="title">The compositions limitation</span>
-          <app-table></app-table>
+          <app-table [data]="tableData1" ></app-table>
           <span class="title">The average composition</span>
-          <app-table></app-table>
+          <app-table2></app-table2>
         </div>
       </div>
 
@@ -51,7 +62,7 @@
 
       <div class="data_wrapper_table">
         <div class="container">
-          <app-table></app-table>
+          <app-tableB></app-tableB>
         </div>
       </div>
 

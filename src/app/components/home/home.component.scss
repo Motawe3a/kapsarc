@@ -10,8 +10,12 @@
     align-items: center;
     justify-content: flex-start;
 
-    img {
+    .logo {
       width: 300px;
+      object-fit: contain;
+    }
+
+    .nav_icon {
       object-fit: contain;
     }
 
@@ -21,7 +25,17 @@
       display: flex;
       flex-direction: column;
 
-      span {
+      .nav_txt {
+
+        padding: 20px;
+        margin: 5px 0px;
+        cursor: pointer;
+        color: #808084;
+        transition: all 0.2s ease-in-out;
+        font-size: 15px;
+      }
+
+      .nav_link {
         padding: 20px;
         margin: 5px 0px;
         cursor: pointer;
