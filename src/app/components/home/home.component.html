@@ -1,0 +1,60 @@
+<div class="container_wrapper">
+  <div class="sidenav">
+    <img src="../../../assets/logo.jpg" alt="">
+    <div class="list_wrapper">
+      <span [ngClass]="{'active': exerciseA}" (click)="showExercisePage('A')">A/Exercise</span>
+      <span [ngClass]="{'active': exerciseB}" (click)="showExercisePage('B')">B/Exercise</span>
+    </div>
+  </div>
+  <div class="mainContent">
+
+    <!-- Exercise A page view -->
+    <div class="data_wrapper" *ngIf="exerciseA">
+      <div class="data_wrapper_title">
+        <h2>A/ Exercise for UX+Front+Backend Developers</h2>
+        <span>Lorem ipsum</span>
+      </div>
+
+      <div class="data_wrapper_chart">
+        <div>
+          <span class="title">The classifications of assets <span class="regular">v.s</span> their most recent
+            capacities</span>
+          <line-chart></line-chart>
+        </div>
+      </div>
+
+      <div class="data_wrapper_table">
+        <div class="container">
+          <span class="title">The compositions limitation</span>
+          <app-table></app-table>
+          <span class="title">The average composition</span>
+          <app-table></app-table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Exercise B page view -->
+    <div class="data_wrapper" *ngIf="exerciseB">
+
+      <div class="data_wrapper_title">
+        <h2>B/ Exercise for Data Wrangler</h2>
+        <span>Lorem ipsum</span>
+      </div>
+
+      <div class="data_wrapper_chart">
+        <div>
+          <span class="title">Month-Year <span class="regular">v.s</span> Values</span>
+          <bar-chartB></bar-chartB>
+        </div>
+      </div>
+
+      <div class="data_wrapper_table">
+        <div class="container">
+          <app-table></app-table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
